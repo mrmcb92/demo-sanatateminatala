@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicii de sănătate mintală</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #FAF8F4;
+    --bg-dark:   #1E2A24;
+    --text:      #1A1A1A;
+    --text-muted:#5A5850;
+    --sage:      #6B8F71;
+    --sage-light:#E8F0EA;
+    --sand:      #C4A882;
+    --sand-light:#F5EFE6;
+    --white:     #FFFFFF;
+    --border:    #E2DDD5;
+    --f-display: 'Cormorant Garamond', Georgia, serif;
+    --f-body:    'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5vw;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--f-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--sage); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--bg-dark);
+    color: var(--white) !important;
+    padding: 9px 20px;
+    border-radius: 4px;
+    font-size: 0.83rem !important;
+    font-weight: 500 !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85 !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5vw 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--f-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 2rem;
+  }
+  .inner-voice-box {
+    min-height: 72px;
+    margin-bottom: 2.5rem;
+  }
+  .inner-voice {
+    font-family: var(--f-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+  }
+  .inner-voice::before {
+    content: '"';
+    font-size: 1.2em;
+    margin-right: 4px;
+    color: var(--sand);
+  }
+  .inner-voice::after {
+    content: '"';
+    font-size: 1.2em;
+    margin-left: 4px;
+    color: var(--sand);
+  }
+  .hero-headline {
+    font-family: var(--f-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+    max-width: 780px;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--bg-dark);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.82; }
+  .btn-ghost {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+  .hero-stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hero-stat-item {}
+  .hero-stat-num {
+    font-family: var(--f-display);
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    max-width: 160px;
+    line-height: 1.4;
+  }
+
+  /* SECTION BASE */
+  section { width: 100%; }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 96px 5vw;
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--f-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .section-body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  /* TRIED SECTION */
+  .tried-section { background: var(--sand-light); }
+  .tried-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 5rem;
+    margin-top: 3.5rem;
+  }
+  .tried-item {}
+  .tried-icon {
+    width: 36px;
+    height: 2px;
+    background: var(--sand);
+    margin-bottom: 1rem;
+  }
+  .tried-title {
+    font-family: var(--f-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .tried-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .tried-verdict {
+    font-size: 0.8rem;
+    color: var(--sand);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* DARK BARRIER SECTION */
+  .barrier-section { background: var(--bg-dark); }
+  .barrier-section .label { color: var(--sand); }
+  .barrier-section .section-title { color: var(--white); }
+  .barrier-section .section-body { color: rgba(255,255,255,0.55); }
+  .barrier-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5px;
+    margin-top: 3.5rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.08);
+  }
+  .barrier-item {
+    background: var(--bg-dark);
+    padding: 2rem 1.8rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .barrier-item:hover { background: rgba(107,143,113,0.12); }
+  .barrier-q {
+    font-family: var(--f-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+  }
+  .barrier-a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {}
+  .how-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 3.5rem;
+    background: var(--border);
+  }
+  .how-step {
+    background: var(--bg);
+    padding: 2.5rem 2rem;
+  }
+  .step-num {
+    font-family: var(--f-display);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--sage-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .step-title {
+    font-family: var(--f-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .step-text {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* TESTIMONIALS */
+  .testimony-section { background: var(--sage-light); }
+  .testimony-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .testimony-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 2px;
+    position: relative;
+  }
+  .testimony-quote {
+    font-family: var(--f-display);
+    font-size: 4rem;
+    color: var(--sage-light);
+    line-height: 0.8;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+  .testimony-text {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text);
+    font-style: italic;
+    font-family: var(--f-display);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .testimony-author {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  /* CTA SECTION */
+  .cta-section { background: var(--bg-dark); }
+  .cta-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .cta-headline {
+    font-family: var(--f-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.12;
+  }
+  .cta-headline em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .cta-right {}
+  .cta-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .cta-form input {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    font-family: var(--f-body);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-form input::placeholder { color: rgba(255,255,255,0.3); }
+  .cta-form input:focus { border-color: var(--sage); }
+  .cta-form .btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background: var(--sage);
+    font-size: 0.88rem;
+    border: none;
+    cursor: pointer;
+    font-family: var(--f-body);
+  }
+  .cta-disclaimer {
+    font-size: 0.73rem;
+    color: rgba(255,255,255,0.28);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* FAQ */
+  .faq-section {}
+  .faq-list { margin-top: 2.5rem; max-width: 680px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .faq-q {
+    font-family: var(--f-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .faq-toggle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .faq-a {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, margin-top 0.2s;
+    font-weight: 300;
+  }
+  .faq-item.open .faq-a { max-height: 200px; margin-top: 0.75rem; }
+  .faq-item.open .faq-toggle { background: var(--sage); border-color: var(--sage); color: white; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-dark);
+    padding: 3rem 5vw;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--f-display);
+    color: var(--white);
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--sage); }
+  .footer-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.5;
+    text-align: right;
+    max-width: 340px;
+  }
+
+  /* FADE IN */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; }
+  .fade-up.visible { animation: fadeUp 0.55s ease forwards; }
+
+  /* CURSOR BLINK for inner voice */
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.85em;
+    background: var(--sand);
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .tried-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .barrier-list { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; }
+    .testimony-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-note { text-align: left; }
+    .hero-stat-row { gap: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" style="visibility:hidden;">placeholder</a>
+  <div class="nav-links">
+    <a href="#cum-functioneaza">Cum funcționează</a>
+    <a href="#intrebari">Întrebări</a>
+    <a href="#contact" class="nav-cta">Programare gratuită</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Sănătate mintală · Fără judecată</p>
+
+  <div class="inner-voice-box">
+    <span class="inner-voice" id="voice-text">O să treacă singur</span><span class="cursor"></span>
+  </div>
+
+  <h1 class="hero-headline">
+    Îți spui asta de luni.<br>
+    Poate de <em>ani.</em>
+  </h1>
+  <p class="hero-sub">
+    Nu trebuie să fii în criză ca să mergi la un specialist. 
+    Și nu trebuie să rezolvi totul singur.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Vreau o primă discuție</a>
+    <a href="#cum-functioneaza" class="btn-ghost">Cum funcționează →</a>
+  </div>
+
+  <div class="hero-stat-row">
+    <div class="hero-stat-item">
+      <span class="hero-stat-num">91%</span>
+      <span class="hero-stat-label">din oamenii cu depresie nu primesc îngrijire (OMS, 2025)</span>
+    </div>
+    <div class="hero-stat-item">
+      <span class="hero-stat-num">1 din 8</span>
+      <span class="hero-stat-label">persoane trăiesc cu o problemă de sănătate mintală netratatată</span>
+    </div>
+    <div class="hero-stat-item">
+      <span class="hero-stat-num">Prima</span>
+      <span class="hero-stat-label">discuție e gratuită și fără niciun angajament</span>
+    </div>
+  </div>
+</div>
+
+<!-- TRIED SECTION -->
+<section class="tried-section">
+  <div class="section-inner">
+    <span class="label">Ce ai mai încercat</span>
+    <h2 class="section-title">Știm deja prin ce ai trecut.</h2>
+    <p class="section-body">Înainte să ajungă cineva la un specialist, de obicei a parcurs același drum. Nu e o critică, e o realitate pe care o vedem des.</p>
+
+    <div class="tried-grid">
+      <div class="tried-item fade-up">
+        <div class="tried-icon"></div>
+        <h3 class="tried-title">Ai vorbit cu prietenii</h3>
+        <p class="tried-text">Și ei au ascultat cum au putut. Dar după o vreme simți că îi obosești sau că nu înțeleg cu adevărat. Sau că nici tu nu știi ce să le spui.</p>
+        <p class="tried-verdict">Ajutor real, dar insuficient pentru ce simți.</p>
+      </div>
+      <div class="tried-item fade-up">
+        <div class="tried-icon"></div>
+        <h3 class="tried-title">Ai încercat meditația sau aplicații</h3>
+        <p class="tried-text">Calm, Headspace, exerciții de respirație. Funcționează în momentul respectiv. Dar dimineața e la fel ca ieri.</p>
+        <p class="tried-verdict">Instrument bun, dar nu rezolvă sursa problemei.</p>
+      </div>
+      <div class="tried-item fade-up">
+        <div class="tried-icon"></div>
+        <h3 class="tried-title">Ai citit articole și ai urmărit podcasturi</h3>
+        <p class="tried-text">Acum știi ce e burnout, anxietate de atașament, gânduri automate negative. Știi teoria. Dar cunoașterea singură nu schimbă cum te simți.</p>
+        <p class="tried-verdict">Înțelegere fără transformare.</p>
+      </div>
+      <div class="tried-item fade-up">
+        <div class="tried-icon"></div>
+        <h3 class="tried-title">Ai așteptat să treacă</h3>
+        <p class="tried-text">Și câteodată a trecut. Dar s-a întors. Și de fiecare dată parcă un pic mai greu de dus.</p>
+        <p class="tried-verdict">Rezistența are un cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARRIER SECTION -->
+<section class="barrier-section">
+  <div class="section-inner">
+    <span class="label">Ce te oprește</span>
+    <h2 class="section-title" style="color:white;">Le auzim des. Sunt reale.<br>Și au un răspuns.</h2>
+
+    <div class="barrier-list">
+      <div class="barrier-item">
+        <p class="barrier-q">„Nu sunt destul de bolnav ca să merit ajutor."</p>
+        <p class="barrier-a">Nu există un prag minim de suferință. Dacă ceva te apasă și nu dispare, ăla e motivul suficient.</p>
+      </div>
+      <div class="barrier-item">
+        <p class="barrier-q">„Ce o să creadă lumea dacă merg la psiholog?"</p>
+        <p class="barrier-a">Aceasta e una dintre cele mai frecvente temeri. Și în același timp, nimeni din jurul tău nu trebuie să știe. Confidențialitatea e absolută.</p>
+      </div>
+      <div class="barrier-item">
+        <p class="barrier-q">„Terapia e prea scumpă."</p>
+        <p class="barrier-a">Avem sesiuni cu tarife adaptate, pachet de start la preț redus și prima discuție complet gratuită. Costul nu trebuie să fie bariera.</p>
+      </div>
+      <div class="barrier-item">
+        <p class="barrier-q">„N-am timp."</p>
+        <p class="barrier-a">Sesiunile sunt online, la ore flexibile inclusiv seara și în weekend. Durează 50 de minute.</p>
+      </div>
+      <div class="barrier-item">
+        <p class="barrier-q">„O să fiu judecat pentru ce am făcut sau gândit."</p>
+        <p class="barrier-a">Specialiștii noștri au auzit probabil tot. Rolul lor nu e să judece, ci să înțeleagă. Fără excepție.</p>
+      </div>
+      <div class="barrier-item">
+        <p class="barrier-q">„Nu cred că vorbitul ajută."</p>
+        <p class="barrier-a">E o reacție normală. Terapia nu înseamnă doar să vorbești — înseamnă să înveți să gândești și să acționezi diferit. Există metode clare, nu doar conversație.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="cum-functioneaza">
+  <div class="section-inner">
+    <span class="label">Cum funcționează</span>
+    <h2 class="section-title">Simplu. Fără birocrație.</h2>
+    <p class="section-body">Nu trebuie să știi dinainte ce ai sau ce vrei să schimbi. E treaba noastră să te ajutăm să înțelegi.</p>
+
+    <div class="how-steps">
+      <div class="how-step fade-up">
+        <span class="step-num">1</span>
+        <h3 class="step-title">Discuție gratuită de 20 de minute</h3>
+        <p class="step-text">Povestești pe scurt ce simți. Noi îți explicăm cum poate arăta procesul. Fără angajament, fără presiune.</p>
+      </div>
+      <div class="how-step fade-up">
+        <span class="step-num">2</span>
+        <h3 class="step-title">Potrivim specialistul potrivit</h3>
+        <p class="step-text">Nu toți specialiștii se potrivesc cu toți oamenii. Alegem împreună pe cineva care are experiență cu ce treci tu.</p>
+      </div>
+      <div class="how-step fade-up">
+        <span class="step-num">3</span>
+        <h3 class="step-title">Mergi în ritmul tău</h3>
+        <p class="step-text">Fără calendar impus, fără obiective pe termen scurt. Ritmul, frecvența și direcția vin din ce simți că ai nevoie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimony-section">
+  <div class="section-inner">
+    <span class="label">Ce spun oamenii</span>
+    <h2 class="section-title">Nu recomandări. Experiențe.</h2>
+
+    <div class="testimony-grid">
+      <div class="testimony-card fade-up">
+        <div class="testimony-quote">"</div>
+        <p class="testimony-text">Am amânat doi ani. Îmi spuneam că o să trec singur. Prima sesiune a fost mai ușoară decât mă așteptam — și mai utilă decât tot ce am citit în perioada aia.</p>
+        <span class="testimony-author">M.R. · 34 ani · București</span>
+      </div>
+      <div class="testimony-card fade-up">
+        <div class="testimony-quote">"</div>
+        <p class="testimony-text">Eram funcțional. La muncă, în relație, tot. Dar pe interior ceva nu era în regulă de ani de zile. Nu știam nici eu cum să numesc asta.</p>
+        <span class="testimony-author">A.D. · 29 ani · Cluj</span>
+      </div>
+      <div class="testimony-card fade-up">
+        <div class="testimony-quote">"</div>
+        <p class="testimony-text">Mi-era rușine să cer ajutor. Mi se părea că e ceva în neregulă cu mine că nu pot singur. Acum știu că asta nu e slăbiciune.</p>
+        <span class="testimony-author">C.P. · 41 ani · Timișoara</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div>
+      <span class="label" style="color:var(--sand);">Primul pas</span>
+      <h2 class="cta-headline">O discuție de 20 de minute.<br><em>Complet gratuită.</em></h2>
+    </div>
+    <div class="cta-right">
+      <p class="cta-body">Lasă-ne numele și numărul tău și te contactăm în maxim 24 de ore. Nu trebuie să explici nimic în avans.</p>
+      <div class="cta-form">
+        <input type="text" placeholder="Prenumele tău">
+        <input type="tel" placeholder="Număr de telefon">
+        <button class="btn-primary">Vreau să vorbesc cu cineva</button>
+      </div>
+      <p class="cta-disclaimer">Datele tale sunt confidențiale și nu sunt partajate cu nimeni. Nu te contactăm dacă nu dorești.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="intrebari">
+  <div class="section-inner">
+    <span class="label">Întrebări frecvente</span>
+    <h2 class="section-title">Ce mai vrei să știi.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Cât durează până văd rezultate?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Nu există un răspuns universal. Unii oameni simt o diferență după câteva sesiuni. Alții au un drum mai lung. Depinde de ce treci și de ce vrei să schimbi. Îți spunem sincer la prima discuție la ce să te aștepți.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Pot să schimb specialistul dacă nu mă simt confortabil?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Da, oricând. Relația cu specialistul e cel mai important factor în terapie. Dacă ceva nu funcționează, te ajutăm să găsești pe altcineva fără costuri suplimentare.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Sesiunile sunt față în față sau online?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Ambele opțiuni sunt disponibile. Sesiunile online sunt la fel de eficiente ca cele față în față — studiile susțin asta — și sunt mai ușor de integrat în program.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Ce se întâmplă dacă îmi dau seama că nu am nevoie de terapie?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Atunci îți spunem asta. Nu avem interes să îți vindem ședințe de care nu ai nevoie. Prima discuție există tocmai ca să clarificăm împreună ce ai nevoie.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Familia sau angajatorul pot afla că vin la terapie?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Nu. Confidențialitatea este protejată prin lege și prin etica profesiei. Nicio informație nu iese din ședință fără acordul tău explicit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo" style="visibility:hidden;">placeholder</span>
+    <p class="footer-note">Aceasta nu este o linie de criză. Dacă te afli într-o situație de urgență, sună la 112 sau la linia de suport emoțional TELVERDE: 0800 800 120.</p>
+  </div>
+</footer>
+
+<script>
+  // --- Inner voice typewriter ---
+  const thoughts = [
+    "O să treacă singur",
+    "Nu sunt destul de bolnav",
+    "N-am timp de terapie",
+    "Ce o să creadă lumea",
+    "Alții au probleme mai grave",
+    "Mă descurc și fără ajutor"
+  ];
+  let idx = 0, charIdx = 0, deleting = false;
+  const el = document.getElementById('voice-text');
+
+  function type() {
+    const current = thoughts[idx];
+    if (!deleting) {
+      el.textContent = current.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        idx = (idx + 1) % thoughts.length;
+        setTimeout(type, 400);
+        return;
+      }
+    }
+    setTimeout(type, deleting ? 38 : 72);
+  }
+  type();
+
+  // --- Intersection Observer for fade-up ---
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // --- FAQ toggle ---
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+    el.querySelector('.faq-toggle').textContent = item.classList.contains('open') ? '×' : '+';
+  }
+</script>
+</body>
+</html>
